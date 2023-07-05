@@ -62,7 +62,7 @@ html {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* dark mode setup */
-  --dark-mode-bg-color: #333;
+  --dark-mode-bg-color: #333333;
   --dark-mode-text-color: #f0f0f0;
 
   --backgroundColor: var(--grey-50);
@@ -376,10 +376,12 @@ Gallery
   margin: 3rem auto;
   display: grid;
   gap: 2rem;
+  overflow: auto;
 }
 
 .image-container .img {
   height: 10rem;
+  cursor: zoom-in;
 }
 
 @media (min-width: 768px) {
@@ -391,4 +393,28 @@ Gallery
   .image-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+.image-modal {
+  top: 10%;
+  left: 30%;
+  height: 90%;
+  width: 90%;
+  z-index: 9;
+  display: block;
+  margin: auto;
+  overflow: hidden;
+  cursor: zoom-in;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  background: rgba(45, 45, 45, 1);
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-500);
+  border-radius: var(--borderRadius);
 }

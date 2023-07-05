@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { GiTerror } from "react-icons/gi";
@@ -10,6 +10,7 @@ const url = `https://api.unsplash.com/search/photos?client_id=${
 }`;
 
 function Gallery() {
+  const [imageState, setImageState] = useState("");
   const queryClient = useQueryClient();
   const { searchTerm } = useGlobalContext();
   const response = useQuery({
@@ -19,6 +20,10 @@ function Gallery() {
       return res.data;
     },
   });
+
+  const imgItem = response.data?.results.filter(
+    (item: IResults) => item.id === imageState
+  );
 
   if (response.isLoading) {
     return (
@@ -55,19 +60,29 @@ function Gallery() {
   }
 
   return (
-    <section className="image-container">
-      {results.map((item: IResults) => {
-        const url = item?.urls?.regular;
-        return (
-          <img
-            src={url}
-            key={item.id}
-            alt={item.alt_description}
-            className="img"
-          />
-        );
-      })}
-    </section>
+    <>
+      <section className="image-container">
+        {results.map((item: IResults) => {
+          const url = item?.urls?.regular;
+          return (
+            <div key={item.id}>
+              <img
+                src={url}
+                alt={item.alt_description}
+                className="img"
+                onClick={() => {
+                  setImageState(item.id);
+                }}
+              />
+            </div>
+          );
+        })}
+      </section>
+      {/* Will be Done soon */}
+      {/* <div className="image-modal">
+        {imageState ? <img src={imgItem?.[0].urls.regular} /> : null}
+      </div> */}
+    </>
   );
 }
 
