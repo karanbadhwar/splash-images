@@ -171,8 +171,13 @@ ul {
 
 .img {
   width: 100%;
+  box-sizing: border-box;
   display: block;
   object-fit: cover;
+  border-radius: 5px;
+  /* border-radius: 50px; */
+  /* background: #645cff; */
+  box-shadow: 2px 2px 5px rgba(45, 45, 45, 0.8);
 }
 /* buttons */
 
@@ -417,4 +422,35 @@ Gallery
 ::-webkit-scrollbar-thumb {
   background: var(--primary-500);
   border-radius: var(--borderRadius);
+}
+
+.form-section {
+  position: relative;
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  z-index: -1; /* if you use -1 you have to set to `"window"` the interactivity.detectsOn property */
+}
+.title-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.title-img {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 45%;
+  z-index: -1;
+  opacity: 0.5;
 }
